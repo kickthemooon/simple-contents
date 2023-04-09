@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   qa:
@@ -20,6 +21,10 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
+
+      - name: NPM Install
+        run: |
+          npm install
 
       - name: QA
         run: |
