@@ -47,5 +47,13 @@ jobs:
           # 'changed' output will true. Enter multiple paths separated by spaces.
           change_path: "src"
 
-      - run: |
-          echo "${{ steps.semver.outputs.version }}"
+      - name: Display Version
+        run: |
+          echo "version: ${{ steps.semver.outputs.version }}"
+
+      - name: Tag
+        if: |
+          steps.semver.outputs.changed == 'true'
+        uses: rickstaa/action-create-tag@v1
+        with:
+          tag: "${{ steps.semver.outputs.version }}"
