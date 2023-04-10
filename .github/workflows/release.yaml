@@ -56,4 +56,5 @@ jobs:
           steps.semver.outputs.changed == 'true'
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: "${{ steps.semver.outputs.version }}"
+          tag: "v${{ steps.semver.outputs.version }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
