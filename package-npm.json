@@ -2,7 +2,7 @@
   "name": "simple-contents",
   "description": "zero dependencies 1kb library that generates a contents list for your articles",
   "sideEffects": false,
-  "version": "0.1.0",
+  "version": "VERSION",
   "main": "index.umd.cjs",
   "module": "index.js",
   "license": "MIT",

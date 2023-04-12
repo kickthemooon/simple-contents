@@ -60,7 +60,8 @@ jobs:
 
       - name: Prepare for Publish
         run: |
-          cp package-npm.json dist/package.json
+          cat package-npm.json | \
+          sed "s|VERSION|v${{ steps.semver.outputs.version }}|g" > dist/package.json
 
       - uses: JS-DevTools/npm-publish@v1
         if: |
@@ -69,5 +70,4 @@ jobs:
         with:
           token: "${{ secrets.NPM_TOKEN }}"
           package: "dist/package.json"
-          tag: "v${{ steps.semver.outputs.version }}"
 
