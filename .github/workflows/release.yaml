@@ -1,10 +1,12 @@
 name: release
 
 on:
-  push:
-    branches:
-      - master
   workflow_dispatch:
+    inputs:
+      force_publish:
+        description: 'force publish even if there is no change'
+        type: boolean
+        default: false
 
 jobs:
   release:
@@ -30,6 +32,10 @@ jobs:
         run: |
           npm run test
 
+      - name: Build
+        run: |
+          npm run build
+
       - name: Determine Next Semantic Version
         id: semver
         uses: paulhatch/semantic-version@v5.0.2
@@ -51,3 +57,24 @@ jobs:
         with:
           github_token: "${{ secrets.TOKEN }}"
           custom_tag: "${{ steps.semver.outputs.version }}"
+
+      - name: NPM Login
+        if: |
+          steps.semver.outputs.changed == 'true' ||
+          inputs.force_publish == 'true'
+        run: |
+          npm login \
+            --registry=https://registry.npmjs.org/ \
+            --scope=@kickthemooon \
+            --always-auth \
+            --auth-type=oauth \
+            --oauth-token="${NPM_TOKEN}"
+
+      - name: Publish to NPM
+        if: |
+          steps.semver.outputs.changed == 'true' ||
+          inputs.force_publish == 'true'
+        run: |
+          cp package-npm.json dist/package.json
+          cd dist
+          npm publish
