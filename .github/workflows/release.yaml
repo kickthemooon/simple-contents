@@ -58,23 +58,16 @@ jobs:
           github_token: "${{ secrets.TOKEN }}"
           custom_tag: "${{ steps.semver.outputs.version }}"
 
-      - name: NPM Login
-        if: |
-          steps.semver.outputs.changed == 'true' ||
-          github.event.inputs.force_publish == 'true'
-        run: |
-          npm login \
-            --registry=https://registry.npmjs.org/ \
-            --scope=@kickthemooon \
-            --always-auth \
-            --auth-type=oauth \
-            --oauth-token="${NPM_TOKEN}"
-
-      - name: Publish to NPM
-        if: |
-          steps.semver.outputs.changed == 'true' ||
-          github.event.inputs.force_publish == 'true'
+      - name: Prepare for Publish
         run: |
           cp package-npm.json dist/package.json
-          cd dist
-          npm publish
+
+      - uses: JS-DevTools/npm-publish@v1
+        if: |
+          steps.semver.outputs.changed == 'true' ||
+          github.event.inputs.force_publish == 'true'
+        with:
+          token: "${{ secrets.NPM_TOKEN }}"
+          package: "dist/package.json"
+          tag: "v${{ steps.semver.outputs.version }}"
+
