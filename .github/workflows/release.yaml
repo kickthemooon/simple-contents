@@ -61,7 +61,7 @@ jobs:
       - name: NPM Login
         if: |
           steps.semver.outputs.changed == 'true' ||
-          github.events.inputs.force_publish == 'true'
+          github.event.inputs.force_publish == 'true'
         run: |
           npm login \
             --registry=https://registry.npmjs.org/ \
@@ -73,7 +73,7 @@ jobs:
       - name: Publish to NPM
         if: |
           steps.semver.outputs.changed == 'true' ||
-          github.events.inputs.force_publish == 'true'
+          github.event.inputs.force_publish == 'true'
         run: |
           cp package-npm.json dist/package.json
           cd dist
