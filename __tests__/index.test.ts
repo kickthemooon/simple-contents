@@ -17,18 +17,19 @@ test('test init', () => {
     });
 
     // run simpleContents
-    simpleContents.init('body', '#contents');
+    simpleContents.init('.article', '#contents');
 
-    // get the contents element by id
-    const contents = document.getElementById('contents');
-    if (contents === undefined || contents === null) {
-        expect(contents !== null && contents !== undefined).toEqual(true);
+    const source = simpleContents.getSource();
+    const target = simpleContents.getTarget();
+    
+    if (target === undefined || target === null) {
+        expect(target !== null && target !== undefined).toEqual(true);
         return;
     }
 
     // get the list and heading elements
-    const listElements = Array.from(contents.querySelectorAll('li'));
-    const headingElements = Array.from(document.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+    const listElements = Array.from(target.querySelectorAll('li'));
+    const headingElements = Array.from(source.querySelectorAll('h1, h2, h3, h4, h5, h6'));
 
     // run checks
     expect(listElements.length > 0).toEqual(true);

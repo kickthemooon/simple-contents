@@ -1,4 +1,6 @@
 export default {
+    sourceSelector: '',
+    targetSelector: '',
     structuredHeadings: [],
     addLinkToHeading(heading: Element) {
         heading.innerHTML = '<a href="#' + heading.id + '">#</a> ' + heading.innerHTML;
@@ -44,16 +46,22 @@ export default {
 
         target.appendChild(ul);
     },
-    init(sourceSelector: string, targetSelector: string) {
-        const source = document.querySelector(sourceSelector);
-        if (source === undefined || source === null) {
-            return;
-        }
+    addContentsTitle() {
+        const target = this.getTarget();
 
-        const target = document.querySelector(targetSelector);
-        if (target === undefined || target === null) {
-            return;
-        }
+        const heading = document.createElement('h1');
+        heading.innerText = 'Contents';
+        
+        target.prepend(heading);
+
+        return this;
+    },
+    init(sourceSelector: string, targetSelector: string) {
+        this.sourceSelector = sourceSelector;
+        this.targetSelector = targetSelector;
+
+        const source = this.getSource();
+        const target = this.getTarget();
 
         const headings: Array<Element> = Array.from(source.querySelectorAll('h1, h2, h3, h4, h5, h6'));
 
@@ -63,11 +71,15 @@ export default {
             this.addLinkToHeading(heading);
         })
 
-        const heading = document.createElement('h1');
-        heading.innerText = 'Contents';
-        target.appendChild(heading);
-
         this.generateContents(target, this.structuredHeadings)
+
+        return this;
+    },
+    getSource(): Element {
+        return document.querySelector(this.sourceSelector)!;
+    },
+    getTarget(): Element {
+        return document.querySelector(this.targetSelector)!;
     }
 }
 

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            min-height: 3000px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Article</h1>
+
+<div id="contents"></div>
+
+<div class="article">
+    <h1>One</h1>
+    <h2>One Two</h2>
+
+    <h1>Two</h1>
+    <h2>Two Two</h2>
+
+    <h1>Three</h1>
+    <h2>Three Two</h2>
+    <h2>Three Three</h2>
+    <h3>Three Three Two</h3>
+</div>
+
+
+<script src="dist/index.umd.js"></script>
+
+<script>
+SimpleContents.init('.article', '#contents').addContentsTitle();
+</script>
+
+</body>
+</html>
