@@ -31,17 +31,12 @@ export default {
         const ul = document.createElement('ul');
 
         structuredHeadings.forEach(mappedHeading => {
-            // create li
             const li = document.createElement('li');
-
-            // create ahref
             const ahref = document.createElement('a');
             ahref.textContent = mappedHeading.value;
             ahref.href = '#' + mappedHeading.id;
-
             li.appendChild(ahref);
             ul.appendChild(li);
-
             if (mappedHeading.subItems.length > 0) {
                 this.generateContents(li, mappedHeading.subItems);
             }
