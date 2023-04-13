@@ -15,8 +15,13 @@
     "url": "https://github.com/kickthemooon/simple-contents/issues"
   },
   "homepage": "https://github.com/kickthemooon/simple-contents",
+  "keywords": [
+    "contents",
+    "jump-to"
+  ],
   "files": [
     "index.js",
-    "index.umd.cjs"
+    "index.umd.js",
+    "README.md"
   ]
 }

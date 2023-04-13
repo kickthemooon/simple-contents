@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && mv dist/index.umd.cjs dist/index.umd.js",
+    "build": "tsc && vite build && mv dist/index.umd.cjs dist/index.umd.js && cp README.md dist/README.md",
     "preview": "vite preview",
     "test": "jest"
   },
