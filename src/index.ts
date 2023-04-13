@@ -63,6 +63,10 @@ export default {
             this.addLinkToHeading(heading);
         })
 
+        const heading = document.createElement('h1');
+        heading.innerText = 'Contents';
+        target.appendChild(heading);
+
         this.generateContents(target, this.structuredHeadings)
     }
 }

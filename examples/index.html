@@ -14,23 +14,28 @@
 </head>
 <body>
 
+<h1>Article</h1>
+
 <div id="contents"></div>
 
-<h1>One</h1>
-<h2>One Two</h2>
+<div class="article">
+    <h1>One</h1>
+    <h2>One Two</h2>
 
-<h1>Two</h1>
-<h2>Two Two</h2>
+    <h1>Two</h1>
+    <h2>Two Two</h2>
 
-<h1>Three</h1>
-<h2>Three Two</h2>
-<h2>Three Three</h2>
-<h3>Three Three Two</h3>
+    <h1>Three</h1>
+    <h2>Three Two</h2>
+    <h2>Three Three</h2>
+    <h3>Three Three Two</h3>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/simple-contents@0.0.2/index.umd.cjs"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-contents@latest/index.umd.js"></script>
 
 <script>
-SimpleContents.init('body', '#contents')
+SimpleContents.init('.article', '#contents')
 </script>
 
 </body>

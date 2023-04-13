@@ -61,7 +61,6 @@ jobs:
         run: |
           cat package-npm.json | \
           sed "s|VERSION|v${{ steps.semver.outputs.version }}|g" > dist/package.json
-          mv dist/index.umd.cjs dist/index.umd.js
 
       - uses: JS-DevTools/npm-publish@v1
         if: |
