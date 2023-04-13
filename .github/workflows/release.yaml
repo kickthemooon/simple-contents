@@ -44,7 +44,7 @@ jobs:
           major_pattern: "MAJOR:"
           minor_pattern: "MINOR:"
           version_format: "${major}.${minor}.${patch}"
-          change_path: "src"
+          change_path: "src tsconfig.json vite.config.js"
 
       - name: Display Version
         run: |
@@ -62,6 +62,7 @@ jobs:
         run: |
           cat package-npm.json | \
           sed "s|VERSION|v${{ steps.semver.outputs.version }}|g" > dist/package.json
+          mv dist/index.umd.cjs dist/index.umd.js
 
       - uses: JS-DevTools/npm-publish@v1
         if: |

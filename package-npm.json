@@ -3,7 +3,7 @@
   "description": "zero dependencies 1kb library that generates a contents list for your articles",
   "sideEffects": false,
   "version": "VERSION",
-  "main": "index.umd.cjs",
+  "main": "index.umd.js",
   "module": "index.js",
   "license": "MIT",
   "author": "Adnan Mujkanovic",
