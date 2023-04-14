@@ -10,8 +10,8 @@ export default {
         heading.id = textContent
             .toLowerCase()
             .trim()
-            .replace(' ', '-')
-            .replace(/[^a-z0-9\-]/gim,'');
+            .replaceAll(' ', '-')
+            .replaceAll(/[^a-z0-9\-]/gim,'');
     },
     addHeading(heading: Element, structuredHeadings: Array<any>) {
         const headingRank = parseInt(heading.tagName.replace('H', ''));
@@ -62,6 +62,10 @@ export default {
 
         const source = this.getSource();
         const target = this.getTarget();
+
+        if (source === undefined || target === undefined) {
+            return;
+        }
 
         const headings: Array<Element> = Array.from(source.querySelectorAll('h1, h2, h3, h4, h5, h6'));
 
