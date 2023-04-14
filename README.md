@@ -17,6 +17,7 @@ npm install simple-contents
 ### Module
 ```
 import simpleContents from 'simple-contents';
+simpleContents.init('sourceSelector', 'targetSelector');
 ```
 
 ### Browser
