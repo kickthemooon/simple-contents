@@ -1,5 +1,9 @@
 # Simple Contents
 
+Generate a contents block based on headings in your post / article.
+
+![Example](https://i.imgur.com/ODqVtHu.png)
+
 ## Installation
 
 ### NPM
